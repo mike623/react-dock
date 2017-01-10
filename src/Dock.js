@@ -236,6 +236,7 @@ export default class Dock extends Component {
     onSizeChange: PropTypes.func,
     dimStyle: PropTypes.object,
     dockStyle: PropTypes.object,
+    dockContent : PropTypes.object,
     duration: PropTypes.number
   }
 
@@ -315,12 +316,13 @@ export default class Dock extends Component {
   }
 
   render() {
-    const { children, zIndex, dimMode, position, isVisible } = this.props;
+    const { children, zIndex, dimMode, position, isVisible, dockContent } = this.props;
     const { isResizing, size, isDimHidden } = this.state;
 
     const dimStyles = Object.assign({}, ...getDimStyles(this.props, this.state));
     const dockStyles = Object.assign({}, ...getDockStyles(this.props, this.state));
     const resizerStyles = Object.assign({}, ...getResizerStyles(position));
+    const dockContent = Object.assign({}, styles.dockContent, dockContent);
 
     return (
       <div style={Object.assign({}, styles.wrapper, { zIndex })}>
@@ -330,7 +332,7 @@ export default class Dock extends Component {
         <div style={dockStyles}>
           <div style={resizerStyles}
                onMouseDown={this.handleMouseDown} />
-          <div style={styles.dockContent}>
+          <div style={dockContent}>
             {typeof children === 'function' ?
               children({
                 position,
