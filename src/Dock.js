@@ -322,7 +322,7 @@ export default class Dock extends Component {
     const dimStyles = Object.assign({}, ...getDimStyles(this.props, this.state));
     const dockStyles = Object.assign({}, ...getDockStyles(this.props, this.state));
     const resizerStyles = Object.assign({}, ...getResizerStyles(position));
-    const dockContent = Object.assign({}, styles.dockContent, dockContent);
+    const dockContentStyles = Object.assign({}, styles.dockContent, dockContent);
 
     return (
       <div style={Object.assign({}, styles.wrapper, { zIndex })}>
@@ -332,7 +332,7 @@ export default class Dock extends Component {
         <div style={dockStyles}>
           <div style={resizerStyles}
                onMouseDown={this.handleMouseDown} />
-          <div style={dockContent}>
+          <div style={dockContentStyles}>
             {typeof children === 'function' ?
               children({
                 position,
